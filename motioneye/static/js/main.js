@@ -5326,4 +5326,9 @@ $(document).ready(function () {
     $(window).resize(function () {
         updateLayout();
     });
+
+    document.addEventListener('fullscreenchange', function() {
+        if (!document.fullscreenElement)
+            doExitFullScreenCamera();
+    });
 });
