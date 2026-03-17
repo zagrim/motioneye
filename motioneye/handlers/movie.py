@@ -28,10 +28,26 @@ __all__ = ('MovieHandler',)
 
 class MovieHandler(BaseHandler):
     async def get(self, camera_id, op, filename=None):
+        if filename is not None and '..' in filename.split('/'):
+            raise HTTPError(
+                403, 'Path traversal detected', reason='Path traversal detected'
+            )
+
         if camera_id is not None:
             camera_id = int(camera_id)
             if camera_id not in config.get_camera_ids():
                 raise HTTPError(404, 'no such camera')
+            # block access to admin-only cameras for non-admin users
+            camera_config = config.get_camera(camera_id)
+            if (
+                camera_config
+                and camera_config.get('@admin_only')
+                and self.current_user != 'admin'
+            ):
+                raise HTTPError(
+                    403,
+                    f'access denied to admin-only camera "{camera_id}" for operation "{op}"',
+                )
 
         if op == 'list':
             await self.list(camera_id)
@@ -45,6 +61,20 @@ class MovieHandler(BaseHandler):
             raise HTTPError(400, 'unknown operation')
 
     async def post(self, camera_id, op, filename=None, group=None):
+        if filename is not None and '..' in filename.split('/'):
+            raise HTTPError(
+                403,
+                f'Path traversal detected in filename "{filename}"',
+                reason='Path traversal detected',
+            )
+
+        if group is not None and '..' in group.split('/'):
+            raise HTTPError(
+                403,
+                f'Path traversal detected in group "{group}"',
+                reason='Path traversal detected',
+            )
+
         if group == '/':  # ungrouped
             group = ''
 
@@ -70,10 +100,15 @@ class MovieHandler(BaseHandler):
 
         camera_config = config.get_camera(camera_id)
         if utils.is_local_motion_camera(camera_config):
+            # Get with_stat parameter from query string, default to True
+            # Only 'false' is treated as false, everything else is true
+            with_stat = self.get_argument('with_stat', 'true').lower() != 'false'
+
             media_list = await mediafiles.list_media(
                 camera_config,
                 media_type='movie',
                 prefix=self.get_argument('prefix', None),
+                with_stat=with_stat,
             )
             if media_list is None:
                 self.finish_json({'error': 'Failed to get movies list.'})

@@ -33,14 +33,12 @@ _jinja_env = None
 def _init_jinja():
     global _jinja_env
 
-    #            loader=FileSystemLoader(searchpath="templates" ),
+    # loader=FileSystemLoader(searchpath="templates"),
     _jinja_env = Environment(
         loader=FileSystemLoader(settings.TEMPLATE_PATH),
-        trim_blocks=False,
-        extensions=['jinja2.ext.i18n'],
-        autoescape=select_autoescape(['html', 'xml']),
+        autoescape=select_autoescape(['html']),
     )
-    _jinja_env.install_gettext_translations(settings.traduction, newstyle=True)
+    _jinja_env.globals['_'] = settings.traduction.gettext
 
     # globals
     _jinja_env.globals['settings'] = settings
@@ -53,13 +51,11 @@ def _init_jinja():
 
 
 def _reload_lang():
-    global _jinja_env
-    _jinja_env.install_gettext_translations(settings.traduction, newstyle=True)
+    _jinja_env.globals['_'] = settings.traduction.gettext
     _jinja_env.globals['settings'] = settings
 
 
 def add_template_path(path):
-    global _jinja_env
     if _jinja_env is None:
         _init_jinja()
 
@@ -67,7 +63,6 @@ def add_template_path(path):
 
 
 def add_context(name, value):
-    global _jinja_env
     if _jinja_env is None:
         _init_jinja()
 
@@ -75,7 +70,6 @@ def add_context(name, value):
 
 
 def render(template_name, **context):
-    global _jinja_env
     if _jinja_env is None:
         _init_jinja()
 

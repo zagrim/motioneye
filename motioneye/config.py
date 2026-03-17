@@ -22,9 +22,11 @@ import logging
 import os.path
 import subprocess
 from errno import EEXIST, ENOENT
+from os import stat
 from re import match, sub
 from shlex import split
-from urllib.parse import urlunparse
+from stat import S_IMODE
+from urllib.parse import quote, urlunparse
 
 from tornado.ioloop import IOLoop
 
@@ -59,7 +61,7 @@ _ACTIONS = [
 ]
 
 _main_config_cache = None
-_camera_config_cache = {}
+_camera_config_cache: dict = {}
 _camera_ids_cache = None
 _additional_section_funcs = []
 _additional_config_funcs = []
@@ -299,6 +301,18 @@ def get_main(as_lines=False):
 
             raise
 
+    if f and S_IMODE(stat(config_file_path).st_mode) != 0o600:
+        logging.warning(
+            f'main config file {config_file_path} has insecure mode, applying 0600 ...'
+        )
+        try:
+            os.chmod(config_file_path, 0o600)
+        except Exception as e:
+            logging.error(
+                f'failed to chown 0600 main config file {config_file_path}: {e}'
+            )
+            raise
+
     if lines is None and f:
         try:
             lines = [line[:-1] for line in f.readlines()]
@@ -365,6 +379,7 @@ def set_main(main_config):
 
     try:
         f = open(config_file_path, 'w')
+        os.chmod(config_file_path, 0o600)
 
     except Exception as e:
         logging.error(
@@ -483,6 +498,18 @@ def get_camera(camera_id, as_lines=False):
 
         raise
 
+    if S_IMODE(stat(camera_config_path).st_mode) != 0o600:
+        logging.warning(
+            f'camera config file {camera_config_path} has insecure mode, applying 0600 ...'
+        )
+        try:
+            os.chmod(camera_config_path, 0o600)
+        except Exception as e:
+            logging.error(
+                f'failed to chown 0600 camera config file {camera_config_path}: {e}'
+            )
+            raise
+
     try:
         lines = [line.strip() for line in f.readlines()]
 
@@ -513,6 +540,7 @@ def get_camera(camera_id, as_lines=False):
             '@upload_access_key',
             '@upload_secret_key',
             '@upload_bucket',
+            '@upload_sse_c_key',
             'camera_name',
         ],
     )
@@ -607,6 +635,7 @@ def set_camera(camera_id, camera_config):
 
     try:
         f = open(camera_config_path, 'w')
+        os.chmod(camera_config_path, 0o600)
 
     except Exception as e:
         logging.error(
@@ -682,9 +711,25 @@ def add_camera(device_details):
         camera_config['netcam_url'] = device_details['url']
 
         if device_details['username']:
-            camera_config['netcam_userpass'] = (
-                device_details['username'] + ':' + device_details['password']
-            )
+            raw_username = str(device_details['username'])
+            raw_password = str(device_details['password'])
+
+            # Motion's mjpeg/mjpg/jpeg/ftp auth handling expects plain userpass here.
+            if camera_config['netcam_url'].startswith(('mjpeg', 'mjpg', 'jpeg', 'ftp')):
+                userpass = f"{raw_username}:{raw_password}"
+            else:
+                # For other protocols, credentials go to ffmpeg as URL userinfo,
+                # so reserved characters (e.g. "@", "#") must be percent-encoded.
+                username = quote(raw_username, safe='')
+                password = quote(raw_password, safe='')
+                userpass = f'{username}:{password}'
+
+                if username != raw_username or password != raw_password:
+                    logging.debug(
+                        f'credentials for camera {camera_id} have been percent-encoded'
+                    )
+
+            camera_config['netcam_userpass'] = userpass
 
         camera_config['netcam_keepalive'] = device_details.get('keep_alive', False)
         camera_config['netcam_tolerant_check'] = True
@@ -839,14 +884,53 @@ def main_dict_to_ui(data):
     return ui
 
 
+def input_sanity_check(regex, value, key, msg):
+    if match(regex, value):
+        return value
+
+    else:
+        raise ValueError(
+            f'Value "{value}" for setting "{key}" did not match regex "{regex}": {msg}'
+        )
+
+
 def motion_camera_ui_to_dict(ui, prev_config=None):
     prev_config = dict(prev_config or {})
     main_config = get_main()  # needed for surveillance password
 
+    # regex definitions for input sanity checks in backend
+    # they must match the ones in motioneye/static/js/main.js
+    deviceNameValidRegExp = '^[A-Za-z0-9-_+ ]+$'
+    deviceNameFailMessage = _(
+        'Device names are only allowed to contain alphanumerical characters, hyphen -, underscore _, plus +, and space'
+    )
+    filenameValidRegExp = '^([A-Za-z0-9 ()/._-]|%[CYmdHMSqv])+$'
+    filenameFailMessage = _(
+        'File names are only allowed to contain alphanumerical characters, parenthesis (), forward slash /, dot ., '
+        'underscore _, hyphen -, space, and a subset of motion conversion specifiers: %C %Y %m %d %H %M %S %q %v'
+    )
+    dirnameValidRegExp = '^[A-Za-z0-9 ()/._-]+$'
+    dirnameFailMessage = _(
+        'Directory names are only allowed to contain alphanumerical characters, space, parenthesis (), forward slash /, '
+        'dot ., underscore _, and hyphen -'
+    )
+    emailValidRegExp = '^[A-Za-z0-9 _+.@^~<>,-]+$'
+    emailFailMessage = _(
+        'Email addresses are only allowed to contain alphanumerical characters, underscore _, plus +, dot ., at @, '
+        'caret ^, tilde ~, angle brackets <>, hyphen -, and may be separated by comma, and space'
+    )
+    webHookUrlValidRegExp = '^[^;\']+$'
+    webHookUrlFailMessage = _(
+        'URLs are not allowed to contain caret ^, semicolon ;, or apostrophe \''
+    )
+
     data = {
         # device
-        'camera_name': ui['name'],
+        'camera_name': input_sanity_check(
+            deviceNameValidRegExp, ui['name'], 'camera_name', deviceNameFailMessage
+        ),
         '@enabled': ui['enabled'],
+        '@admin_only': ui.get('admin_only', False),
         'auto_brightness': ui['auto_brightness'],
         'framerate': int(ui['framerate']),
         'rotate': int(ui['rotation']),
@@ -873,6 +957,7 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         '@upload_access_key': ui['upload_access_key'],
         '@upload_secret_key': ui['upload_secret_key'],
         '@upload_bucket': ui['upload_bucket'],
+        '@upload_sse_c_key': ui['upload_sse_c_key'],
         '@clean_cloud_enabled': ui['clean_cloud_enabled'],
         # text overlay
         'text_left': '',
@@ -889,9 +974,7 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         'stream_auth_method': {'disabled': 0, 'basic': 1, 'digest': 2}.get(
             ui['streaming_auth_mode'], 0
         ),
-        'stream_authentication': main_config['@normal_username']
-        + ':'
-        + main_config['@normal_password'],
+        'stream_authentication': '',
         '@lang': main_config['@lang'],
         # still images
         'picture_output': False,
@@ -904,7 +987,12 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         # movies
         'movie_output': False,
         'movie_passthrough': bool(ui['movie_passthrough']),
-        'movie_filename': ui['movie_file_name'],
+        'movie_filename': input_sanity_check(
+            filenameValidRegExp,
+            ui['movie_file_name'],
+            'movie_filename',
+            filenameFailMessage,
+        ),
         'movie_max_time': ui['max_movie_length'],
         '@preserve_movies': int(ui['preserve_movies']),
         # motion detection
@@ -933,6 +1021,28 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         'on_movie_end': '',
         'on_picture_save': '',
     }
+
+    if data.get('stream_auth_method', 0) > 0:
+        streaming_username = ui.get('streaming_username')
+        streaming_password = ui.get('streaming_password')
+
+        prev_stream_authentication = prev_config.get('stream_authentication')
+        parts = (prev_stream_authentication or '').split(':', 1)
+        prev_stream_username = parts[0]
+        prev_stream_password = parts[1] if len(parts) > 1 else ''
+
+        if not streaming_username:
+            streaming_username = prev_stream_username
+
+        # UI omits the password when unchanged.
+        if not streaming_password:
+            streaming_password = prev_stream_password
+
+        # No hard fail: if still missing, keep stream_authentication empty.
+        if streaming_username and streaming_password:
+            data['stream_authentication'] = (
+                str(streaming_username) + ':' + str(streaming_password)
+            )
 
     if utils.is_v4l2_camera(prev_config):
         proto = 'v4l2'
@@ -995,6 +1105,10 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
             capture_height,
         )
 
+    data['target_dir'] = input_sanity_check(
+        dirnameValidRegExp, ui['root_directory'], 'target_dir', dirnameFailMessage
+    )
+
     if (ui['storage_device'] == 'network-share') and settings.SMB_SHARES:
         mount_point = smbctl.make_mount_point(
             ui['network_server'], ui['network_share_name'], ui['network_username']
@@ -1016,9 +1130,6 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         data['target_dir'] = os.path.normpath(
             os.path.join(mount_point, ui['root_directory'])
         )
-
-    else:
-        data['target_dir'] = ui['root_directory']
 
     # try to create the target dir
     try:
@@ -1079,7 +1190,13 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
             data['text_right'] = ui['custom_right_text']
 
     if ui['still_images']:
-        data['picture_filename'] = ui['image_file_name']
+        data['picture_filename'] = input_sanity_check(
+            filenameValidRegExp,
+            ui['image_file_name'],
+            'picture_filename',
+            filenameFailMessage,
+        )
+        # script aborts if above sanity check failed, hence no need to check again
         data['snapshot_filename'] = ui['image_file_name']
 
         capture_mode = ui['capture_mode']
@@ -1176,7 +1293,16 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
     # event start
     on_event_start = [f"{meyectl.find_command('relayevent')} start %t"]
     if ui['email_notifications_enabled']:
-        emails = sub('\\s', '', ui['email_notifications_addresses'])
+        emails = sub(
+            '\\s',
+            '',
+            input_sanity_check(
+                emailValidRegExp,
+                ui['email_notifications_addresses'],
+                'email_notifications_addresses',
+                emailFailMessage,
+            ),
+        )
 
         line = (
             "%(script)s '%(server)s' '%(port)s' '%(account)s' '%(password)s' '%(tls)s' '%(from)s' '%(to)s' "
@@ -1190,7 +1316,12 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
                 .replace(';', '\\;')
                 .replace('%', '%%'),
                 'tls': ui['email_notifications_smtp_tls'],
-                'from': ui['email_notifications_from'],
+                'from': input_sanity_check(
+                    emailValidRegExp,
+                    ui['email_notifications_from'],
+                    'email_notifications_from',
+                    emailFailMessage,
+                ),
                 'to': emails,
                 'timespan': ui['email_notifications_picture_time_span'],
             }
@@ -1211,7 +1342,16 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
         on_event_start.append(line)
 
     if ui['web_hook_notifications_enabled']:
-        url = sub('\\s', '+', ui['web_hook_notifications_url'])
+        url = sub(
+            '\\s',
+            '+',
+            input_sanity_check(
+                webHookUrlValidRegExp,
+                ui['web_hook_notifications_url'],
+                'web_hook_notifications_url',
+                webHookUrlFailMessage,
+            ),
+        )
 
         on_event_start.append(
             "{script} '{method}' '{url}'".format(
@@ -1230,7 +1370,16 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
     on_event_end = [f"{meyectl.find_command('relayevent')} stop %t"]
 
     if ui['web_hook_end_notifications_enabled']:
-        url = sub(r'\s', '+', ui['web_hook_end_notifications_url'])
+        url = sub(
+            r'\s',
+            '+',
+            input_sanity_check(
+                webHookUrlValidRegExp,
+                ui['web_hook_end_notifications_url'],
+                'web_hook_end_notifications_url',
+                webHookUrlFailMessage,
+            ),
+        )
 
         on_event_end.append(
             "%(script)s '%(method)s' '%(url)s'"
@@ -1305,12 +1454,13 @@ def motion_camera_ui_to_dict(ui, prev_config=None):
     return prev_config
 
 
-def motion_camera_dict_to_ui(data):
+def motion_camera_dict_to_ui(data):  # noqa: C901
     ui = {
         # device
         'name': data['camera_name'],
         'enabled': data['@enabled'],
         'id': data['@id'],
+        'admin_only': data.get('@admin_only', False),
         'auto_brightness': data['auto_brightness'],
         'framerate': int(data['framerate']),
         'rotation': int(data['rotate']),
@@ -1343,6 +1493,7 @@ def motion_camera_dict_to_ui(data):
         'upload_access_key': data['@upload_access_key'],
         'upload_secret_key': data['@upload_secret_key'],
         'upload_bucket': data['@upload_bucket'],
+        'upload_sse_c_key': data['@upload_sse_c_key'],
         'clean_cloud_enabled': data['@clean_cloud_enabled'],
         'web_hook_storage_enabled': False,
         'command_storage_enabled': False,
@@ -1362,6 +1513,8 @@ def motion_camera_dict_to_ui(data):
         'streaming_auth_mode': {0: 'disabled', 1: 'basic', 2: 'digest'}.get(
             data.get('stream_auth_method'), 'disabled'
         ),
+        'streaming_username': '',
+        'streaming_password': '',
         'streaming_motion': int(data['stream_motion']),
         # still images
         'still_images': False,
@@ -1422,6 +1575,14 @@ def motion_camera_dict_to_ui(data):
         'sunday_from': '',
         'sunday_to': '',
     }
+
+    stream_authentication = data.get('stream_authentication') or ''
+    if stream_authentication:
+        parts = stream_authentication.split(':', 1)
+        streaming_username = parts[0]
+        streaming_password = parts[1] if len(parts) > 1 else ''
+        ui['streaming_username'] = streaming_username
+        ui['streaming_password'] = '*****' if streaming_password else ''
 
     if utils.is_net_camera(data):
         ui['device_url'] = data['netcam_url']
@@ -1819,6 +1980,7 @@ def simple_mjpeg_camera_ui_to_dict(ui, prev_config=None):
         # device
         'camera_name': ui['name'],
         '@enabled': ui['enabled'],
+        '@admin_only': ui.get('admin_only', False),
     }
 
     # additional configs
@@ -1840,6 +2002,7 @@ def simple_mjpeg_camera_dict_to_ui(data):
         'id': data['@id'],
         'proto': 'mjpeg',
         'url': data['@url'],
+        'admin_only': data.get('@admin_only', False),
     }
 
     # additional configs
@@ -1938,11 +2101,6 @@ def backup():
 
 
 def restore(content):
-    global _main_config_cache
-    global _camera_config_cache
-    global _camera_ids_cache
-    global _additional_structure_cache
-
     logging.info('restoring config from backup file')
 
     cmd = ['tar', 'zxC', settings.CONF_PATH]
@@ -2049,7 +2207,7 @@ def _conf_to_dict(lines, list_names=None, no_convert=None):
             if len(parts) == 1:  # empty value
                 parts.append('')
 
-            (name, value) = parts
+            name, value = parts
 
             value = value.strip()
 
@@ -2083,7 +2241,7 @@ def _dict_to_conf(lines, data, list_names=None):
 
         _match = match(r'^#\s*(@\w+)\s*(.*)', line)
         if _match:  # @line
-            (name, value) = _match.groups()[:2]
+            name, value = _match.groups()[:2]
 
         elif line.startswith('#') or line.startswith(';'):  # simple comment line
             conf_lines.append(line)
@@ -2092,10 +2250,10 @@ def _dict_to_conf(lines, data, list_names=None):
         else:
             parts = line.split(None, 1)
             if len(parts) == 2:
-                (name, value) = parts
+                name, value = parts
 
             else:
-                (name, value) = parts[0], ''
+                name, value = parts[0], ''
 
         if name in processed:
             continue  # name already processed
@@ -2185,6 +2343,7 @@ def _set_default_motion(data):
 def _set_default_motion_camera(camera_id, data):
     data.setdefault('camera_name', 'Camera' + str(camera_id))
     data.setdefault('@id', camera_id)
+    data.setdefault('@admin_only', False)
 
     if utils.is_v4l2_camera(data):
         data.setdefault('videodevice', '/dev/video0')
@@ -2221,9 +2380,10 @@ def _set_default_motion_camera(camera_id, data):
     data.setdefault('@upload_access_key', '')
     data.setdefault('@upload_secret_key', '')
     data.setdefault('@upload_bucket', '')
+    data.setdefault('@upload_sse_c_key', '')
     data.setdefault('@clean_cloud_enabled', False)
 
-    data.setdefault('stream_localhost', False)
+    data.setdefault('stream_localhost', True)
     data.setdefault('stream_port', 9080 + camera_id)
     data.setdefault('stream_maxrate', 5)
     data.setdefault('stream_quality', 85)
@@ -2300,6 +2460,7 @@ def _set_default_motion_camera(camera_id, data):
 def _set_default_simple_mjpeg_camera(camera_id, data):
     data.setdefault('camera_name', 'Camera' + str(camera_id))
     data.setdefault('@id', camera_id)
+    data.setdefault('@admin_only', False)
 
 
 def get_additional_structure(camera, separators=False):
@@ -2359,7 +2520,7 @@ def get_additional_structure(camera, separators=False):
 def _get_additional_config(data, camera_id=None):
     args = [camera_id] if camera_id else []
 
-    (sections, configs) = get_additional_structure(camera=bool(camera_id))
+    sections, configs = get_additional_structure(camera=bool(camera_id))
     get_funcs = {c.get('get') for c in list(configs.values()) if c.get('get')}
     get_func_values = collections.OrderedDict((f, f(*args)) for f in get_funcs)
 
@@ -2387,7 +2548,7 @@ def _get_additional_config(data, camera_id=None):
 def _set_additional_config(data, camera_id=None):
     args = [camera_id] if camera_id else []
 
-    (sections, configs) = get_additional_structure(camera=bool(camera_id))
+    sections, configs = get_additional_structure(camera=bool(camera_id))
 
     set_func_values = collections.OrderedDict()
     for name, section in list(sections.items()):

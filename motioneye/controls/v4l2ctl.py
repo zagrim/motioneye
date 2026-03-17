@@ -21,6 +21,7 @@ import re
 import stat
 import subprocess
 import time
+from shlex import quote
 
 from motioneye import utils
 
@@ -79,8 +80,6 @@ def list_devices():
 def list_resolutions(device):
     from motioneye import motionctl
 
-    global _resolutions_cache
-
     device = utils.make_str(device)
 
     if device in _resolutions_cache:
@@ -91,7 +90,7 @@ def list_resolutions(device):
     resolutions = set()
     output = b''
     started = time.time()
-    cmd = f"v4l2-ctl -d '{device}' --list-formats-ext | grep -vi stepwise | grep -oE '[0-9]+x[0-9]+' || true"
+    cmd = f"v4l2-ctl -d {quote(device)} --list-formats-ext | grep -vi stepwise | grep -oE '[0-9]+x[0-9]+' || true"
     logging.debug(f'running command "{cmd}"')
 
     try:
@@ -165,8 +164,6 @@ def find_persistent_device(device):
 
 
 def list_ctrls(device):
-    global _ctrls_cache
-
     device = utils.make_str(device)
 
     if device in _ctrls_cache:
@@ -193,7 +190,7 @@ def list_ctrls(device):
         if not match:
             continue
 
-        (control, _, properties) = match.groups()
+        control, _, properties = match.groups()
         properties = dict(
             [v.split('=', 1) for v in properties.split(' ') if v.count('=')]
         )

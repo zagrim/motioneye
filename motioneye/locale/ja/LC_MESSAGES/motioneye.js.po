@@ -4,714 +4,725 @@
 # Automatically generated, 2020.
 #
 # qnotions <qnotions@gmail.com>, 2024.
+# LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2025, 2026.
+# MichaIng <micha@dietpi.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-19 09:00+0000\n"
-"PO-Revision-Date: 2024-10-28 17:00+0000\n"
-"Last-Translator: qnotions <qnotions@gmail.com>\n"
+"POT-Creation-Date: 2026-02-17 02:12+0000\n"
+"PO-Revision-Date: 2026-02-21 11:10+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/motioneye-project/motioneye-javascript/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 
-#: motioneye/static/js/main.js:608
+#: motioneye/static/js/main.js:611
 #, fuzzy
 msgid "specialaj signoj ne rajtas en pasvorto"
-msgstr "パスワードに特殊文字は使用できません"
+msgstr "特別署名はパスワードで許可できません"
 
-#: motioneye/static/js/main.js:615 motioneye/static/js/main.js:626
-#: motioneye/static/js/main.js:685 motioneye/static/js/ui.js:362
-#: motioneye/static/js/ui.js:419 motioneye/static/js/ui.js:687
+#: motioneye/static/js/main.js:618
+#, fuzzy
+msgid "use of colon (:) is not allowed in video streaming username"
+msgstr "インチ (:) の使用は、ビデオストリーミングのユーザー名にあるメモです"
+
+#: motioneye/static/js/main.js:629
+#, fuzzy
+msgid "video streaming authentication mode must be Basic or Digest when admin-only access is enabled"
+msgstr "ビデオストリーミング調和モードは、管理者のみのアプローチが有効になっているときに基本またはダイジェストでなければなりません"
+
+#: motioneye/static/js/main.js:636 motioneye/static/js/main.js:647
+#: motioneye/static/js/main.js:706 motioneye/static/js/ui.js:397
 #, fuzzy
 msgid "Ĉi tiu kampo estas deviga"
 msgstr "このフィールドは必須です"
 
-#: motioneye/static/js/main.js:619
+#: motioneye/static/js/main.js:640
 #, fuzzy
 msgid "specialaj signoj ne rajtas en la nomo de kamerao"
-msgstr "カメラ名に特殊文字は使用できません"
+msgstr "カメラの名前で特別な兆候は許可されていません"
 
-#: motioneye/static/js/main.js:631
+#: motioneye/static/js/main.js:652
 #, fuzzy
 msgid "valoro devas esti multoblo de 8"
-msgstr "値は8の倍数でなければなりません"
+msgstr "値が複数ある必要があります 8"
 
-#: motioneye/static/js/main.js:638
+#: motioneye/static/js/main.js:659
 #, fuzzy
 msgid "specialaj signoj ne rajtas en radika voja nomo"
-msgstr "ルートパス名に特殊文字は使用できません"
+msgstr "ルート名義で特別な兆候は許可されていません"
 
-#: motioneye/static/js/main.js:641
+#: motioneye/static/js/main.js:662
 #, fuzzy
 msgid "dosieroj ne povas esti kreitaj rekte en la radiko de via sistemo"
-msgstr "システムのルートに直接ファイルを作成することはできません"
+msgstr "ファイルがシステムのルートで直接作成できません"
 
-#: motioneye/static/js/main.js:648
+#: motioneye/static/js/main.js:669
 #, fuzzy
 msgid "enigu validan retpoŝtadreson"
 msgstr "有効なメールアドレスを入力してください"
 
-#: motioneye/static/js/main.js:655
+#: motioneye/static/js/main.js:676
 #, fuzzy
 msgid "enigu liston de koma apartaj validaj retpoŝtadresoj"
 msgstr "カンマ区切りの有効なメールアドレスのリストを入力してください"
 
-#: motioneye/static/js/main.js:662
+#: motioneye/static/js/main.js:683
 #, fuzzy
 msgid "specialaj signoj ne rajtas en dosiernomo"
 msgstr "ファイル名に特殊文字は使用できません"
 
-#: motioneye/static/js/main.js:689
+#: motioneye/static/js/main.js:710
 #, fuzzy
 msgid "enigu validan valoron"
-msgstr "有効な値を入力してください"
+msgstr "有効な値を置く"
 
-#: motioneye/static/js/main.js:843
+#: motioneye/static/js/main.js:872
 #, fuzzy
 msgid "Ĉi rekursie forigos ĉiujn dosierojn ĉeestantajn en la nuba dosierujo \""
-msgstr "これにより、クラウドフォルダ内のすべてのファイルが再帰的に削除されます \""
+msgstr "このrerunsieはクラウドディレクトリに存在する全てのファイルを削除します"
 
-#: motioneye/static/js/main.js:844
+#: motioneye/static/js/main.js:873
 #, fuzzy
 msgid "\", ne nur tiuj alŝutitaj de motionEye!"
-msgstr "\"、motionEyeによってアップロードされたものだけではありません！"
+msgstr "「モーションアイがアップロードしただけじゃない!」!"
 
-#: motioneye/static/js/main.js:925
+#: motioneye/static/js/main.js:954
 #, fuzzy
 msgid "Ĉi rekursie forigos ĉiujn malnovajn amaskomunikilajn dosierojn en la dosierujo \""
-msgstr "これにより、フォルダ内のすべての古いメディアファイルが再帰的に削除されます \""
+msgstr "このrerunsieは、ディレクトリ内のすべての古いメディアファイルを削除します"
 
-#: motioneye/static/js/main.js:926
+#: motioneye/static/js/main.js:955
 #, fuzzy
 msgid "\", ne nur tiuj kreitaj de motionEye!"
-msgstr "\"、motionEyeによって作成されたものだけではありません！"
+msgstr "モーションアイで作ったものだけではありません!"
 
-#: motioneye/static/js/main.js:992
+#: motioneye/static/js/main.js:1021
 #, fuzzy
 msgid "Ne eblas redakti la maskon sen valida kameraa bildo!"
-msgstr "有効なカメラ画像がないとマスクを編集できません！"
+msgstr "有効なカメラ画像なしでマスクを編集することはできません!"
 
-#: motioneye/static/js/main.js:2237
+#: motioneye/static/js/main.js:2275
 msgid "Propra"
 msgstr "カスタム"
 
-#: motioneye/static/js/main.js:2275
+#: motioneye/static/js/main.js:2313
 #, fuzzy
 msgid "Propra dosierindiko"
-msgstr "カスタムファイル名"
+msgstr "個人的なファイルコメント"
 
-#: motioneye/static/js/main.js:2277
+#: motioneye/static/js/main.js:2315
 #, fuzzy
 msgid "Retan kunlokon"
-msgstr "オンラインコミュニケーション"
+msgstr "オンライン会議"
 
-#: motioneye/static/js/main.js:2637
+#: motioneye/static/js/main.js:2678
 #, fuzzy
 msgid "Via retumilo ne efektivigas ĉi tiun funkcion!"
-msgstr "あなたのブラウザはこの機能を実行しません！"
+msgstr "お使いのブラウザは、この機能を実装していません!"
 
-#: motioneye/static/js/main.js:2653
+#: motioneye/static/js/main.js:2694
 msgid "Apliki"
 msgstr "適用"
 
-#: motioneye/static/js/main.js:2680 motioneye/static/js/main.js:3041
-#: motioneye/static/js/main.js:3096 motioneye/static/js/main.js:3171
+#: motioneye/static/js/main.js:2721 motioneye/static/js/main.js:3083
+#: motioneye/static/js/main.js:3139 motioneye/static/js/main.js:3214
 #, fuzzy
 msgid "Certigu, ke ĉiuj agordaj opcioj validas!"
-msgstr "すべての構成オプションが有効であることを確認してください！"
+msgstr "すべてのチューニングオプションが有効であることを確認してください!"
 
-#: motioneye/static/js/main.js:2782
+#: motioneye/static/js/main.js:2824
 #, fuzzy
 msgid "Ĉi tio rekomencos la sistemon. Daŭrigi?"
-msgstr "これにより、システムが再起動します。続けますか？"
+msgstr "システムを再起動します。 継続?"
 
-#: motioneye/static/js/main.js:2792
+#: motioneye/static/js/main.js:2834
 #, fuzzy
 msgid "Vere fermiti sistemon?"
-msgstr "システムを本当にシャットダウンしますか？"
+msgstr "本当にシステムを閉じる?"
 
-#: motioneye/static/js/main.js:2804
+#: motioneye/static/js/main.js:2846
 #, fuzzy
 msgid "Malŝaltita"
-msgstr "オフ"
+msgstr "ライト"
 
-#: motioneye/static/js/main.js:2819
+#: motioneye/static/js/main.js:2861
 #, fuzzy
 msgid "Ĉu vere restartigi ?"
-msgstr "本当に再起動しますか？"
+msgstr "あなたは本当に再起動しますか?"
 
-#: motioneye/static/js/main.js:2833
+#: motioneye/static/js/main.js:2875
 #, fuzzy
 msgid "La sistemo rekomencis!"
-msgstr "システムが再起動しました！"
+msgstr "システム再開!"
 
-#: motioneye/static/js/main.js:2853 motioneye/static/js/main.js:2886
-#: motioneye/static/js/main.js:3869
+#: motioneye/static/js/main.js:2895 motioneye/static/js/main.js:2928
+#: motioneye/static/js/main.js:3904
 #, fuzzy
 msgid "Bonvolu apliki unue la modifitajn agordojn!"
-msgstr "最初に変更した設定を適用してください！"
+msgstr "まずは変更設定をお申し込みください!"
 
-#: motioneye/static/js/main.js:2858
+#: motioneye/static/js/main.js:2900
 #, fuzzy
 msgid "Neniu fotilo por forigi!"
-msgstr "取り外すカメラはありません！"
+msgstr "削除するカメラはありません!"
 
-#: motioneye/static/js/main.js:2864
+#: motioneye/static/js/main.js:2906
 #, fuzzy
 msgid "Ĉu forigi kameraon "
-msgstr "カメラを取り外し可能"
+msgstr "カメラを取除くため "
 
-#: motioneye/static/js/main.js:2892
+#: motioneye/static/js/main.js:2934
 #, fuzzy
 msgid "motionEye estas ĝisdatigita (aktuala versio: "
-msgstr "motionEyeが更新されました（現在のバージョン："
+msgstr "モーションモーション Eyeは更新版です "
 
-#: motioneye/static/js/main.js:2895
+#: motioneye/static/js/main.js:2937
 #, fuzzy
 msgid "Nova versio havebla: "
-msgstr "利用可能な新しいバージョン："
+msgstr "利用可能な新しいバージョン: "
 
-#: motioneye/static/js/main.js:2895
+#: motioneye/static/js/main.js:2937
 #, fuzzy
 msgid ". Ĝisdatigi?"
-msgstr "。更新しますか？"
-
-#: motioneye/static/js/main.js:2903
-#, fuzzy
-msgid "motionEye estis sukcese ĝisdatigita!"
-msgstr "motionEyeが更新されました！"
-
-#: motioneye/static/js/main.js:2913
-#, fuzzy
-msgid "Ĝisdatigo malsukcesis!"
-msgstr "更新に失敗しました！"
-
-#: motioneye/static/js/main.js:2924
-#, fuzzy
-msgid "La ĝisdatiga procezo malsukcesis!"
-msgstr "アップグレードプロセスは失敗しました！"
-
-#: motioneye/static/js/main.js:2943
-#, fuzzy
-msgid "Rezerva dosiero"
-msgstr "バックアップファイル"
+msgstr "お問い合わせ アップデート?"
 
 #: motioneye/static/js/main.js:2945
 #, fuzzy
-msgid "La rezervan dosieron, kiun vi antaŭe elŝutis."
-msgstr "以前にダウンロードしたバックアップファイル。"
+msgid "motionEye estis sukcese ĝisdatigita!"
+msgstr "モーションモーション 目が正常に更新されました!"
 
-#: motioneye/static/js/main.js:2974
+#: motioneye/static/js/main.js:2955
+#, fuzzy
+msgid "Ĝisdatigo malsukcesis!"
+msgstr "更新が失敗しました!"
+
+#: motioneye/static/js/main.js:2966
+#, fuzzy
+msgid "La ĝisdatiga procezo malsukcesis!"
+msgstr "アップグレードプロセスが失敗しました!"
+
+#: motioneye/static/js/main.js:2985
+#, fuzzy
+msgid "Rezerva dosiero"
+msgstr "保存ファイル"
+
+#: motioneye/static/js/main.js:2987
+#, fuzzy
+msgid "La rezervan dosieron, kiun vi antaŭe elŝutis."
+msgstr "以前にダウンロードした本."
+
+#: motioneye/static/js/main.js:3016
 #, fuzzy
 msgid "Restaŭrigi Agordon"
-msgstr "構成の復元"
+msgstr "法の注文を取り替えて下さい"
 
-#: motioneye/static/js/main.js:2986
+#: motioneye/static/js/main.js:3028
 #, fuzzy
 msgid "Restaŭriganta agordon ..."
-msgstr "設定を復元しています..."
+msgstr "構成の復元........."
 
-#: motioneye/static/js/main.js:2993
+#: motioneye/static/js/main.js:3035
 #, fuzzy
 msgid "La agordo restaŭrigis!"
-msgstr "設定が復元されました！"
+msgstr "設定は復元されます!"
 
-#: motioneye/static/js/main.js:3003 motioneye/static/js/main.js:3022
+#: motioneye/static/js/main.js:3045 motioneye/static/js/main.js:3064
 #, fuzzy
 msgid "Malsukcesis restaŭri la agordon!"
-msgstr "構成の復元に失敗しました！"
+msgstr "設定を復元できなかった!"
 
-#: motioneye/static/js/main.js:3077
+#: motioneye/static/js/main.js:3120
 #, fuzzy
 msgid "Aliri la alŝutan servon malsukcesis: "
-msgstr "アップロードサービスへのアクセスに失敗しました："
+msgstr "アップロードサービスにアクセスできない: "
 
-#: motioneye/static/js/main.js:3080
+#: motioneye/static/js/main.js:3123
 #, fuzzy
 msgid "Aliri la alŝutan servon sukcesis!"
-msgstr "アップロードサービスへのアクセスに成功しました！"
+msgstr "アップロードサービスをお願い!"
 
-#: motioneye/static/js/main.js:3117 motioneye/static/js/main.js:3120
+#: motioneye/static/js/main.js:3160
 #, fuzzy
 msgid "Sciiga retpoŝto fiaskis:"
-msgstr "ニュース電子メールに失敗しました："
+msgstr "メールが失敗しました:"
 
-#: motioneye/static/js/main.js:3136
+#: motioneye/static/js/main.js:3163
+#, fuzzy
+msgid "Notification email succeeded!"
+msgstr "メールでのお問い合わせ!"
+
+#: motioneye/static/js/main.js:3179
 #, fuzzy
 msgid "Certiĝu, ke ĉiuj agordaj opcioj estas validaj!"
-msgstr "すべての設定オプションが有効であることを確認してください。"
+msgstr "すべてのチューニングオプションが有効であることを確認してください!"
 
-#: motioneye/static/js/main.js:3152
+#: motioneye/static/js/main.js:3195
 #, fuzzy
 msgid "Sciiga Telegramo fiaskis:"
-msgstr "通知テレグラムに失敗しました。"
+msgstr "ブランディング・テレグラムが失敗しました:"
 
-#: motioneye/static/js/main.js:3155
+#: motioneye/static/js/main.js:3198
 #, fuzzy
 msgid "Sciiga Telegramo sukcesis!"
-msgstr "通知テレグラムは成功しました！"
+msgstr "ブランディング・テレグラムが成功!"
 
-#: motioneye/static/js/main.js:3191
+#: motioneye/static/js/main.js:3234
 #, fuzzy
 msgid "Aliro al retdividado fiaskis: "
-msgstr "ネットワーク送信へのアクセスに失敗しました。"
+msgstr "ネットワーク共有へのアクセスに失敗しました: "
 
-#: motioneye/static/js/main.js:3194
+#: motioneye/static/js/main.js:3237
 #, fuzzy
 msgid "Aliro al retdividado sukcesis!"
-msgstr "遅延へのアクセスは成功しました！"
+msgstr "ネットワーク共有へのアクセスが成功しました!"
 
-#: motioneye/static/js/main.js:3218
+#: motioneye/static/js/main.js:3261
 #, fuzzy
 msgid "Ĉu vere forigi ĉi tiun dosieron?"
-msgstr "このファイルを本当に削除しますか？"
+msgstr "このファイルを本当に削除しますか?"
 
-#: motioneye/static/js/main.js:3242
+#: motioneye/static/js/main.js:3285
 #, fuzzy
 msgid "Ĉu vere forigi ĉiujn bildojn de \"%(group)s\"?"
-msgstr "「%(group)s（グループ）s」から本当にすべての画像を削除しますか？"
+msgstr "% のすべての画像を本当に取り除かれますか?"
 
-#: motioneye/static/js/main.js:3245
+#: motioneye/static/js/main.js:3288
 #, fuzzy
 msgid "Ĉu vere forigi ĉiujn filmojn de \"%(group)s\"?"
-msgstr "「%(group)s（グループ）s」からすべての映画を本当に削除しますか？"
+msgstr "%の映画のすべてを本当に取り除かれますか?"
 
-#: motioneye/static/js/main.js:3250
+#: motioneye/static/js/main.js:3293
 #, fuzzy
 msgid "Ĉu vere forigi ĉiujn ne grupigitajn bildojn?"
-msgstr "グループ化されていないすべての画像を本当に削除しますか？"
+msgstr "すべての画像を本当に取り除くのですか?"
 
-#: motioneye/static/js/main.js:3253
+#: motioneye/static/js/main.js:3296
 #, fuzzy
 msgid "Ĉu vere forigi ĉiujn ne grupigitajn filmojn?"
-msgstr "グループ化されていないすべての映画を本当に削除しますか？"
+msgstr "あなたは本当にすべての映画を取り除くのですか?"
 
-#: motioneye/static/js/main.js:3367
+#: motioneye/static/js/main.js:3402
 #, fuzzy
 msgid "aldonadi kameraon..."
 msgstr "カメラを追加..."
 
-#: motioneye/static/js/main.js:3592 motioneye/static/js/main.js:3891
+#: motioneye/static/js/main.js:3627 motioneye/static/js/main.js:3926
 msgid "Uzantnomo"
 msgstr "ユーザ名"
 
-#: motioneye/static/js/main.js:3597 motioneye/static/js/main.js:3896
+#: motioneye/static/js/main.js:3632 motioneye/static/js/main.js:3931
 msgid "Pasvorto"
 msgstr "パスワード"
 
-#: motioneye/static/js/main.js:3603
+#: motioneye/static/js/main.js:3638
 #, fuzzy
 msgid "Memoru min"
-msgstr "覚えて"
+msgstr "思い出してほしい"
 
-#: motioneye/static/js/main.js:3621 motioneye/static/js/main.js:3627
+#: motioneye/static/js/main.js:3656 motioneye/static/js/main.js:3662
 #, fuzzy
 msgid "Ensaluti"
 msgstr "ログイン"
 
-#: motioneye/static/js/main.js:3624 motioneye/static/js/ui.js:1023
-#: motioneye/static/js/ui.js:1030
+#: motioneye/static/js/main.js:3659 motioneye/static/js/ui.js:736
+#: motioneye/static/js/ui.js:743
 #, fuzzy
 msgid "Nuligi"
-msgstr "キャンセルする"
+msgstr "ナット"
 
-#: motioneye/static/js/main.js:3666
+#: motioneye/static/js/main.js:3701
 #, fuzzy
 msgid "Vi abortis la filmeton."
-msgstr "ビデオを中止しました。"
+msgstr "映画を手に入れました."
 
-#: motioneye/static/js/main.js:3669
+#: motioneye/static/js/main.js:3704
 #, fuzzy
 msgid "Reto eraro okazis."
-msgstr "ネットワークエラーが発生しました。"
+msgstr "間違いが起きました."
 
-#: motioneye/static/js/main.js:3672
+#: motioneye/static/js/main.js:3707
 #, fuzzy
 msgid "Malkodado-eraro aŭ neprogresinta funkcio."
-msgstr "デコードエラーまたは非投影関数。"
+msgstr "エラーや比例しない関数をデコードします."
 
-#: motioneye/static/js/main.js:3675
+#: motioneye/static/js/main.js:3710
 #, fuzzy
 msgid "Formato ne subtenata aŭ neatingebla/netaŭga por ludado."
-msgstr "フォーマットがサポートされていないか、アクセスできない/再生に適していません。"
+msgstr "フォーマットがサポートされていないか、再生に不適さない."
 
-#: motioneye/static/js/main.js:3678
+#: motioneye/static/js/main.js:3713
 #, fuzzy
 msgid "Nekonata eraro okazis."
-msgstr "不明なエラーが発生しました。"
+msgstr "未知のエラーが発生しました."
 
-#: motioneye/static/js/main.js:3681
+#: motioneye/static/js/main.js:3716
 #, fuzzy
 msgid "Eraro : "
-msgstr "エラー："
+msgstr "エラー: "
 
-#: motioneye/static/js/main.js:3686
+#: motioneye/static/js/main.js:3721
 #, fuzzy
 msgid "antaŭa bildo"
 msgstr "前の画像"
 
-#: motioneye/static/js/main.js:3691
+#: motioneye/static/js/main.js:3726
 #, fuzzy
 msgid "ludi"
-msgstr "遊ぶ"
+msgstr "プレイする"
 
-#: motioneye/static/js/main.js:3694
+#: motioneye/static/js/main.js:3729
 #, fuzzy
 msgid "ludi * 5 kaj enĉenigi"
-msgstr "再生* 5とチェーン"
+msgstr "5を再生し、入る"
 
-#: motioneye/static/js/main.js:3699
+#: motioneye/static/js/main.js:3734
 #, fuzzy
 msgid "sekva bildo"
 msgstr "次の画像"
 
-#: motioneye/static/js/main.js:3822
+#: motioneye/static/js/main.js:3857
 #, fuzzy
 msgid "Fermi"
-msgstr "閉じる"
+msgstr "近くの フェルミ"
 
-#: motioneye/static/js/main.js:3823 motioneye/static/js/main.js:4384
+#: motioneye/static/js/main.js:3858 motioneye/static/js/main.js:4417
 #, fuzzy
 msgid "Elŝuti"
-msgstr "ダウンロードする"
+msgstr "ダウンロード"
 
-#: motioneye/static/js/main.js:3831 motioneye/static/js/main.js:4387
+#: motioneye/static/js/main.js:3866 motioneye/static/js/main.js:4420
 #, fuzzy
 msgid "Forigi"
-msgstr "取り除く"
+msgstr "削除"
 
-#: motioneye/static/js/main.js:3875
+#: motioneye/static/js/main.js:3910
 #, fuzzy
 msgid "Kamerao tipo"
-msgstr "カメラタイプ"
+msgstr "チャンバータイプ"
 
-#: motioneye/static/js/main.js:3877
+#: motioneye/static/js/main.js:3912
 #, fuzzy
 msgid "Loka V4L2-kamerao"
 msgstr "ローカルV4L2カメラ"
 
-#: motioneye/static/js/main.js:3878
+#: motioneye/static/js/main.js:3913
 #, fuzzy
 msgid "Loka MMAL-kamerao"
 msgstr "ローカルMMALカメラ"
 
-#: motioneye/static/js/main.js:3879
+#: motioneye/static/js/main.js:3914
 #, fuzzy
 msgid "Reta kamerao"
-msgstr "ウェブカメラ"
+msgstr "オンラインカメラ"
 
-#: motioneye/static/js/main.js:3880
+#: motioneye/static/js/main.js:3915
 #, fuzzy
 msgid "Fora motionEye kamerao"
-msgstr "外のモーションアイカメラ"
+msgstr "強い動き アイカメラ"
 
-#: motioneye/static/js/main.js:3881
+#: motioneye/static/js/main.js:3916
 #, fuzzy
 msgid "Simpla MJPEG-kamerao"
 msgstr "シンプルなMJPEGカメラ"
 
-#: motioneye/static/js/main.js:3883
+#: motioneye/static/js/main.js:3918
 #, fuzzy
 msgid "la speco de kamerao, kiun vi volas aldoni"
-msgstr "追加するカメラのタイプ"
+msgstr "追加したいカメラの種類"
 
-#: motioneye/static/js/main.js:3886
+#: motioneye/static/js/main.js:3921
 #, fuzzy
 msgid "URL"
 msgstr "URL"
 
-#: motioneye/static/js/main.js:3887
+#: motioneye/static/js/main.js:3922
 #, fuzzy
 msgid "http://ekzemplo.com:8765/cams/..."
-msgstr "http：//example.com：8765 / cams / ..."
+msgstr "http:/example.com:8765/cams/..."
 
-#: motioneye/static/js/main.js:3888
+#: motioneye/static/js/main.js:3923
 #, fuzzy
 msgid "la kameraa URL (ekz. http://ekzemplo.com:8080/cam/)"
-msgstr "カメラのURL（例：http://example.com:8080/cam/）"
+msgstr "カメラ URL (例:/example.com:80/cam/)"
 
-#: motioneye/static/js/main.js:3892
+#: motioneye/static/js/main.js:3927
 #, fuzzy
 msgid "uzantnomo..."
 msgstr "ユーザー名..."
 
-#: motioneye/static/js/main.js:3893
+#: motioneye/static/js/main.js:3928
 #, fuzzy
 msgid "la uzantnomo por la URL, se bezonata (ekz. administranto)"
-msgstr "必要に応じて、URLのユーザー名（例：admin）"
+msgstr "uRL のユーザー名、必要に応じて (管理者など)"
 
-#: motioneye/static/js/main.js:3897
+#: motioneye/static/js/main.js:3932
 #, fuzzy
 msgid "pasvorto..."
-msgstr "パスワード..."
+msgstr "パスワード."
 
-#: motioneye/static/js/main.js:3898
+#: motioneye/static/js/main.js:3933
 #, fuzzy
 msgid "la pasvorto por la URL, se bezonata"
-msgstr "必要に応じて、URLのパスワード"
+msgstr "必要に応じて URL のパスワード"
 
-#: motioneye/static/js/main.js:3901
+#: motioneye/static/js/main.js:3936
 #, fuzzy
 msgid "Kamerao"
-msgstr "カメラ"
+msgstr "チャンバー"
 
-#: motioneye/static/js/main.js:3903
+#: motioneye/static/js/main.js:3938
 #, fuzzy
 msgid "la kameraon, kiun vi volas aldoni"
-msgstr "追加するカメラ"
+msgstr "追加したいカメラ"
 
-#: motioneye/static/js/main.js:3939
+#: motioneye/static/js/main.js:3972
 #, fuzzy
 msgid "Fora motionEye kamerao estas kameraoj instalitaj malantaŭ alia servilo de MotionEye. Aldonante ilin ĉi tie permesos vin rigardi kaj administri ilin de malproksime."
-msgstr "リモートmotionEyeカメラは、別のMotionEyeサーバーの背後に設置されたカメラです。ここに追加すると、離れた場所から監視および管理できます。"
+msgstr "強い動き 別の MotionEye サーバーの背後にあるカメラに眼カメラを設置しています。 それらをここに追加すると、遠くからそれらを監視して管理することができます."
 
-#: motioneye/static/js/main.js:3954
+#: motioneye/static/js/main.js:3987
 #, fuzzy
 msgid "Retaj kameraoj (aŭ IP-kameraoj) estas aparatoj, kiuj denaske fluas RTSP/RTMP aŭ MJPEG-filmetojn aŭ simplajn JPEG-bildojn. Konsultu la manlibron de via aparato por ekscii la ĝustan URL RTSP, RTMP, MJPEG aŭ JPEG."
-msgstr "ネットワークカメラ（またはIPカメラ）は、RTSP / RTMPまたはMJPEGビデオまたは単純なJPEG画像をネイティブにストリーミングするデバイスです。デバイスのマニュアルを参照して、正しいRTSP、RTMP、MJPEG、またはJPEG URLを確認してください。"
+msgstr "オンラインカメラ(またはIPカメラ)は、RTSP / RTMPまたはMJPEGビデオまたはシンプルなJPEG画像で生まれたデバイスです。 デバイスのマニュアルを把握して、正しいURL RTSP、RTMP、MJPEG、またはJPEGを実現します."
 
-#: motioneye/static/js/main.js:3959
+#: motioneye/static/js/main.js:3992
 #, fuzzy
 msgid "Lokaj MMAL-kameraoj estas aparatoj konektitaj rekte al via motionEye-sistemo. Ĉi tiuj estas kutime kart-specifaj kameraoj."
-msgstr "ローカルMMALカメラは、motionEyeシステムに直接接続されているデバイスです。これらは通常、カード固有のカメラです。"
+msgstr "ローカルMMALカメラは、モーションアイシステムに直接接続するデバイスです。 これらは通常、車固有のカメラです."
 
-#: motioneye/static/js/main.js:3974
+#: motioneye/static/js/main.js:4007
 #, fuzzy
 msgid "Aldonante vian aparaton kiel simplan MJPEG-kameraon anstataŭ kiel retan kameraon plibonigos la fotografaĵon, sed neniu moviĝo-detekto, bilda kaptado aŭ registrado de filmoj estos disponebla por ĝi. La kamerao devas esti alirebla por via servilo kaj via retumilo. Ĉi tiu tipo de kamerao ne kongruas kun Internet Explorer."
-msgstr "デバイスをWebカメラとしてではなく、単純なMJPEGカメラとして追加すると、写真が改善されますが、動きの検出、画像のキャプチャ、または動画の記録は利用できません。カメラは、サーバーとブラウザーにアクセスできる必要があります。このタイプのカメラはInternet Explorerと一致しません。"
+msgstr "オンラインカメラの代わりに、デバイスを単純なMJPEGカメラとして追加すると、写真が向上しますが、モーション検出、画像キャプチャ、またはフィルムの録画は使用できません。 お使いのサーバーとブラウザにカメラがアクセスできるようにする必要があります。 このタイプのカメラはInternet Explorerと一致しません."
 
-#: motioneye/static/js/main.js:3979
+#: motioneye/static/js/main.js:4012
 #, fuzzy
 msgid "Lokaj V4L2-kameraoj estas kameraaj aparatoj konektitaj rekte al via motionEye-sistemo, kutime per USB."
-msgstr "ローカルV4L2カメラは、通常USBを介してモーションアイシステムに直接接続されたカメラデバイスです。"
+msgstr "ローカルV4L2のカメラはあなたの動きの目システムに直接、通常USBによって接続されるカメラ装置です."
 
-#: motioneye/static/js/main.js:4130
+#: motioneye/static/js/main.js:4163
 #, fuzzy
 msgid "Aldonadi kameraon..."
 msgstr "カメラを追加..."
 
-#: motioneye/static/js/main.js:4202
+#: motioneye/static/js/main.js:4235
 #, fuzzy
 msgid "Grupo"
-msgstr "団体"
+msgstr "グループグループグループグループグループ"
 
-#: motioneye/static/js/main.js:4206
+#: motioneye/static/js/main.js:4239
 #, fuzzy
 msgid "Inkluzivi foton prenitan ĉiun"
-msgstr "それぞれ撮影した写真を含める"
+msgstr "それぞれ撮影した写真が含まれています"
 
-#: motioneye/static/js/main.js:4209
+#: motioneye/static/js/main.js:4242
 msgid "sekundo"
 msgstr "秒"
 
-#: motioneye/static/js/main.js:4210
+#: motioneye/static/js/main.js:4243
 #, fuzzy
 msgid "5 sekundoj"
 msgstr "5秒"
 
-#: motioneye/static/js/main.js:4211
+#: motioneye/static/js/main.js:4244
 #, fuzzy
 msgid "10 sekundoj"
 msgstr "10秒"
 
-#: motioneye/static/js/main.js:4212
+#: motioneye/static/js/main.js:4245
 #, fuzzy
 msgid "30 sekundoj"
 msgstr "30秒"
 
-#: motioneye/static/js/main.js:4213
+#: motioneye/static/js/main.js:4246
 #, fuzzy
 msgid "minuto"
 msgstr "分"
 
-#: motioneye/static/js/main.js:4214
+#: motioneye/static/js/main.js:4247
 #, fuzzy
 msgid "5 minutoj"
-msgstr "5分"
+msgstr "徒歩5分"
 
-#: motioneye/static/js/main.js:4215
+#: motioneye/static/js/main.js:4248
 #, fuzzy
 msgid "10 minutoj"
 msgstr "10分"
 
-#: motioneye/static/js/main.js:4216
+#: motioneye/static/js/main.js:4249
 #, fuzzy
 msgid "30 minutoj"
 msgstr "30分"
 
-#: motioneye/static/js/main.js:4217
+#: motioneye/static/js/main.js:4250
 msgid "horo"
 msgstr "時"
 
-#: motioneye/static/js/main.js:4220
+#: motioneye/static/js/main.js:4253
 #, fuzzy
 msgid "Elektu la intervalon de tempo inter du elektitaj bildoj."
-msgstr "選択した2つの画像間の時間間隔を選択します。"
+msgstr "選択した2つの画像の範囲を選択します."
 
-#: motioneye/static/js/main.js:4223
+#: motioneye/static/js/main.js:4256
 #, fuzzy
 msgid "Filmo framfrekvenco"
-msgstr "映画のフレームレート"
+msgstr "映画フレームの頻度"
 
-#: motioneye/static/js/main.js:4225
+#: motioneye/static/js/main.js:4258
 #, fuzzy
 msgid "Elektu kiom rapide vi volas ke la akselita video estu."
-msgstr "アクセラレーションビデオの速度を選択します。"
+msgstr "デジタルビデオを望む速度を選択します."
 
-#: motioneye/static/js/main.js:4234
+#: motioneye/static/js/main.js:4267
 #, fuzzy
 msgid "Konsiderante la grandan nombron da bildoj, krei vian video povus daŭri iom da tempo!"
-msgstr "画像の数が多いため、動画の作成には時間がかかる場合があります。"
+msgstr "素晴らしい写真の数を考えると、あなたのビデオを作ることは少し時間持続するかもしれません!"
 
-#: motioneye/static/js/main.js:4251
+#: motioneye/static/js/main.js:4284
 #, fuzzy
 msgid "Krei akselita video"
-msgstr "加速したビデオを作成する"
+msgstr "承認ビデオを作成する"
 
-#: motioneye/static/js/main.js:4260
+#: motioneye/static/js/main.js:4293
 #, fuzzy
 msgid "Filmo kreanta en progreso..."
-msgstr "進行中の映画..."
+msgstr "映画制作の進行..."
 
-#: motioneye/static/js/main.js:4511
+#: motioneye/static/js/main.js:4544
 #, fuzzy
 msgid "Zipitaj"
-msgstr "ジッパー付き"
+msgstr "ログイン"
 
-#: motioneye/static/js/main.js:4520
+#: motioneye/static/js/main.js:4553
 #, fuzzy
 msgid "Akselita video"
-msgstr "加速ビデオ"
+msgstr "編集ビデオ"
 
-#: motioneye/static/js/main.js:4531
+#: motioneye/static/js/main.js:4564
 #, fuzzy
 msgid "Forigi ĉiujn"
-msgstr "それらをすべて削除します"
+msgstr "みんなを"
 
-#: motioneye/static/js/main.js:4673
+#: motioneye/static/js/main.js:4706
 #, fuzzy
 msgid "Bildoj prenitaj de "
-msgstr "撮影した写真"
+msgstr "撮影した写真 "
 
-#: motioneye/static/js/main.js:4676
+#: motioneye/static/js/main.js:4709
 #, fuzzy
 msgid "Filmoj registritaj de "
-msgstr "によって記録された映画"
+msgstr "記録されたフィルム "
 
-#: motioneye/static/js/main.js:4744
+#: motioneye/static/js/main.js:4777
 #, fuzzy
 msgid "montru ĉi tiun fotilon plenekranan"
-msgstr "このカメラをフルタイムに見せる"
+msgstr "このカメラフルスクリーンを表示する"
 
-#: motioneye/static/js/main.js:4745
+#: motioneye/static/js/main.js:4778
 #, fuzzy
 msgid "montri ĉiujn fotilojn"
 msgstr "すべてのカメラを表示"
 
-#: motioneye/static/js/main.js:4746
+#: motioneye/static/js/main.js:4779
 #, fuzzy
 msgid "montru nur ĉi tiun fotilon"
-msgstr "このカメラだけを表示します"
+msgstr "このカメラのみを表示"
 
-#: motioneye/static/js/main.js:4747
+#: motioneye/static/js/main.js:4780
 #, fuzzy
 msgid "malfermaj bildoj retumilo"
 msgstr "画像ブラウザを開く"
 
-#: motioneye/static/js/main.js:4748
+#: motioneye/static/js/main.js:4781
 #, fuzzy
 msgid "malferma videoj retumilo"
-msgstr "動画ブラウザを開く"
+msgstr "ビデオブラウザを開く"
 
-#: motioneye/static/js/main.js:4749
+#: motioneye/static/js/main.js:4782
 #, fuzzy
 msgid "agordi ĉi tiun kameraon"
-msgstr "このカメラをセット"
+msgstr "このカメラを置く"
 
-#: motioneye/static/js/main.js:4765
+#: motioneye/static/js/main.js:4798
 #, fuzzy
 msgid "preni instantaron"
-msgstr "スナップショットを撮る"
+msgstr "瞬時に"
 
-#: motioneye/static/js/main.js:5158
+#: motioneye/static/js/main.js:5191
 #, fuzzy
 msgid "Vi ankoraŭ ne agordis iun kameraon. Alklaku ĉi tie por aldoni unu ..."
-msgstr "あなたはまだカメラを設定していません。 1つを追加するにはここをクリック..."
+msgstr "それでもカメラを作らなくても大丈夫です。 ここをクリックして1つを追加してください."
 
-#: motioneye/static/js/ui.js:503
+#: motioneye/static/js/ui.js:361
 #, fuzzy
-msgid "enigu pozitivan nombron"
-msgstr "正の数を入力してください"
+msgid "enter a valid value"
+msgstr "有効な値を埋める"
 
-#: motioneye/static/js/ui.js:505
-#, fuzzy
-msgid "enigu pozitivan entjeran nombron"
-msgstr "正の整数を入力してください"
-
-#: motioneye/static/js/ui.js:507
+#: motioneye/static/js/ui.js:420
 #, fuzzy
 msgid "enigu nombron"
-msgstr "数字を入力してください"
+msgstr "番号を入力してください"
 
-#: motioneye/static/js/ui.js:509
+#: motioneye/static/js/ui.js:423
 #, fuzzy
 msgid "enigu entjeran nombron"
-msgstr "整数を入力してください"
+msgstr "整数番号を入力してください"
 
-#: motioneye/static/js/ui.js:512
+#: motioneye/static/js/ui.js:427
 #, fuzzy
 msgid " inter "
-msgstr "間に"
+msgstr " 間の距離 "
 
-#: motioneye/static/js/ui.js:512
+#: motioneye/static/js/ui.js:427
 #, fuzzy
 msgid " kaj "
-msgstr "と"
+msgstr " そして両方 "
 
-#: motioneye/static/js/ui.js:515
+#: motioneye/static/js/ui.js:430
 #, fuzzy
 msgid " pli ol "
-msgstr "以上"
+msgstr " 以上 "
 
-#: motioneye/static/js/ui.js:520
+#: motioneye/static/js/ui.js:435
 #, fuzzy
 msgid " malpli ol "
-msgstr "より少ない"
+msgstr " より少しより少しよりより少し "
 
-#: motioneye/static/js/ui.js:573
+#: motioneye/static/js/ui.js:479
 #, fuzzy
 msgid "enigu validan tempon en la sekva formato: HH:MM"
-msgstr "有効な時刻を次の形式で入力してください：HH：MM"
+msgstr "次の形式の有効な時間を入れます。 HH:MM"
 
-#: motioneye/static/js/ui.js:630
+#: motioneye/static/js/ui.js:488
 #, fuzzy
 msgid "enigu validan URL (ekz. http://ekzemplo.com:8080/cams/)"
-msgstr "有効なURLを入力してください（例：http://example.com:8080/cams/）"
+msgstr "有効なURLを入力してください (例: http:/example.com:80/cams/)"
 
-#: motioneye/static/js/ui.js:971
+#: motioneye/static/js/ui.js:684
 #, fuzzy
 msgid "fermi"
 msgstr "閉じる"
 
-#: motioneye/static/js/ui.js:1017 motioneye/static/js/ui.js:1024
+#: motioneye/static/js/ui.js:730 motioneye/static/js/ui.js:737
 #, fuzzy
 msgid "Ne"
-msgstr "いいえ"
+msgstr "コメントはありません"
 
-#: motioneye/static/js/ui.js:1018 motioneye/static/js/ui.js:1025
+#: motioneye/static/js/ui.js:731 motioneye/static/js/ui.js:738
 #, fuzzy
 msgid "Jes"
 msgstr "はい"
 
-#: motioneye/static/js/ui.js:1031 motioneye/static/js/ui.js:1036
+#: motioneye/static/js/ui.js:744 motioneye/static/js/ui.js:749
 #, fuzzy
 msgid "Bone"
-msgstr "よし"
+msgstr "よい井戸"
 
 #: l10n/v4l2.js:4
 #, fuzzy
@@ -721,52 +732,52 @@ msgstr "自動露出"
 #: l10n/v4l2.js:5
 #, fuzzy
 msgid "Backlight Compensation"
-msgstr "バックライト補償"
+msgstr "バックライト報酬"
 
 #: l10n/v4l2.js:6
 #, fuzzy
 msgid "Brightness"
-msgstr "輝度"
+msgstr "明るさ"
 
 #: l10n/v4l2.js:7
 #, fuzzy
 msgid "Contrast"
-msgstr "対比"
+msgstr "コントラスト"
 
 #: l10n/v4l2.js:8
 #, fuzzy
 msgid "Exposure Absolute"
-msgstr "絶対に露出"
+msgstr "露出絶対値"
 
 #: l10n/v4l2.js:9
 #, fuzzy
 msgid "Exposure Auto"
-msgstr "露出自動"
+msgstr "露出自動車"
 
 #: l10n/v4l2.js:10
 #, fuzzy
 msgid "Exposure Auto Priority"
-msgstr "露出自動優先度"
+msgstr "露出の自動車優先順位"
 
 #: l10n/v4l2.js:11
 #, fuzzy
 msgid "Exposure Time Absolute"
-msgstr "絶対に露出時間"
+msgstr "万博時間 絶対"
 
 #: l10n/v4l2.js:12
 #, fuzzy
 msgid "Focus Absolute"
-msgstr "絶対に集中してください"
+msgstr "焦点 絶対"
 
 #: l10n/v4l2.js:13
 #, fuzzy
 msgid "Focus Auto"
-msgstr "フォーカスオート"
+msgstr "焦点の自動"
 
 #: l10n/v4l2.js:14
 #, fuzzy
 msgid "Gain"
-msgstr "利得"
+msgstr "メリット"
 
 #: l10n/v4l2.js:15
 #, fuzzy
@@ -776,27 +787,27 @@ msgstr "ガンマ"
 #: l10n/v4l2.js:16
 #, fuzzy
 msgid "Hue"
-msgstr "色相"
+msgstr "ログイン"
 
 #: l10n/v4l2.js:17
 #, fuzzy
 msgid "Led1 Mode"
-msgstr "LED1モード"
+msgstr "Led1モード"
 
 #: l10n/v4l2.js:18
 #, fuzzy
 msgid "Led1 Frequency"
-msgstr "LED1周波数"
+msgstr "Led1 周波数"
 
 #: l10n/v4l2.js:19
 #, fuzzy
 msgid "Pan Absolute"
-msgstr "絶対にパン"
+msgstr "絶対的な"
 
 #: l10n/v4l2.js:20
 #, fuzzy
 msgid "Power Line Frequency"
-msgstr "電力線周波数"
+msgstr "電力線の頻度頻度頻度"
 
 #: l10n/v4l2.js:21
 #, fuzzy
@@ -811,31 +822,27 @@ msgstr "シャープネス"
 #: l10n/v4l2.js:23
 #, fuzzy
 msgid "Tilt Absolute"
-msgstr "絶対に傾けます"
+msgstr "チルト絶対"
 
 #: l10n/v4l2.js:24
 #, fuzzy
 msgid "White Balance Temperature"
-msgstr "ホワイトバランス温度"
+msgstr "白いバランスの温度"
 
 #: l10n/v4l2.js:25
 #, fuzzy
 msgid "White Balance Temperature Auto"
-msgstr "ホワイトバランス温度自動"
+msgstr "白いバランスの自動温度"
 
 #: l10n/v4l2.js:26
 #, fuzzy
 msgid "Zoom Absolute"
-msgstr "絶対にズームします"
+msgstr "ズームアブソリュート"
 
 #, fuzzy
-#~ msgid "bone"
-#~ msgstr "大丈夫"
+#~ msgid "enigu pozitivan nombron"
+#~ msgstr "正の数を入力してください"
 
 #, fuzzy
-#~ msgid "plena ekrano kamerao"
-#~ msgstr "全画面カメラ"
-
-#, fuzzy
-#~ msgid "Formato ne subtenata aŭ alimaniere neuzebla / neuzebla por ludado."
-#~ msgstr "サポートされていない形式、または再生に使用できない/使用できない形式。"
+#~ msgid "enigu pozitivan entjeran nombron"
+#~ msgstr "正の整数番号を入力してください"

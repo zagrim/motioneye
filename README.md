@@ -13,55 +13,82 @@ You can contribute to translations on [__Weblate__](https://hosted.weblate.org/p
 
 # Installation
 
-These install instructions are constantly tested via CI/CD pipeline on Debian Bullseye and Ubuntu Focal.
-
 1. Install **Python 3.7 or later** and build dependencies
 
     _Here the commands for APT-based Linux distributions are given._
 
-    On **32-bit ARMv6 and ARMv7** systems, thanks to [piwheels](https://piwheels.org/), no development headers are required:
+    Thanks to pre-compiled wheels from PyPI, installing motionEye usually does not require anything but Python 3 and cURL with the ability to do HTTPS network requests:
+
     ```sh
     sudo apt update
-    sudo apt --no-install-recommends install ca-certificates curl python3 python3-distutils
+    sudo apt --no-install-recommends install ca-certificates curl python3
     ```
 
-    On **all other architectures** additional development headers are required:
+    On **ARMv6/ARMv7 (32-bit), RISC-V, and other rare CPU architectures** additional build dependencies may be required to compile the [Pillow](https://pypi.org/project/pillow/) and [PycURL](https://pypi.org/project/pycurl/) modules:
+
     ```sh
-    sudo apt update
-    sudo apt --no-install-recommends install ca-certificates curl python3 python3-dev libcurl4-openssl-dev gcc libssl-dev
+    sudo apt --no-install-recommends install python3-dev gcc libjpeg62-turbo-dev libcurl4-openssl-dev libssl-dev
     ```
 
 2. Install the Python package manager `pip`
+
     ```sh
     curl -sSfO 'https://bootstrap.pypa.io/get-pip.py'
     sudo python3 get-pip.py
     rm get-pip.py
     ```
 
-    **On recent Debian (Bookworm ant later) and Ubuntu (Lunar and later) versions**, the `libpython3.*-stdlib` package ships a file `/usr/lib/python3.*/EXTERNALLY-MANAGED`, which prevents the installation of Python modules outside of `venv` environments.
+    **On recent distro versions, like Debian 12/Bookworm, Ubuntu 23.04/Lunar, and later**, the `libpython3.*-stdlib` package ships a file `/usr/lib/python3.*/EXTERNALLY-MANAGED`, which prevents the installation of Python modules outside of `venv` environments.
     motionEye however has a small number of dependencies with no strict version requirements and hence is very unlikely to break any Python package you might have installed via APT. To bypass this block, add `break-system-packages=true` to the `[global]` section of your `pip.conf`:
+
     ```sh
     grep -q '\[global\]' /etc/pip.conf 2> /dev/null || printf '%b' '[global]\n' | sudo tee -a /etc/pip.conf > /dev/null
     sudo sed -i '/^\[global\]/a\break-system-packages=true' /etc/pip.conf
     ```
 
-    On **32-bit ARMv6 and ARMv7** systems, additionally configure `pip` to use pre-compiled wheels from [piwheels](https://piwheels.org/):
-    ```sh
-    grep -q '\[global\]' /etc/pip.conf 2> /dev/null || printf '%b' '[global]\n' | sudo tee -a /etc/pip.conf > /dev/null
-    sudo sed -i '/^\[global\]/a\extra-index-url=https://www.piwheels.org/simple/' /etc/pip.conf
-    ```
-
 3. Install and setup **motionEye**
+
     ```sh
-    sudo python3 -m pip install --pre motioneye
+    sudo python3 -m pip install motioneye
     sudo motioneye_init
     ```
+
     _NB: `motioneye_init` currently assumes either an APT- or RPM-based distribution with `systemd` as init system. For a manual setup, config and service files can be found here: <https://github.com/motioneye-project/motioneye/tree/dev/motioneye/extra>_
 
+4. Access the web interface
+
+    After having successfully followed the installation instructions, the motionEye server should be running on your system and listening on port **8765**. Fire up your favorite web browser and visit the following URL (replacing `[your_ip]` with... well, your system's IP address):
+
+    ```
+    http://[your_ip]:8765/
+    ```
+
+    Use usernamme _admin_ with empty password when prompted for credentials. For security, __please do set up a proper password for the admin user__, at least if you plan to make your motionEye installation accessible from the Internet.
+
 # Upgrade
+
+When upgrading motionEye, remember to restart the service. To rule out any mix of old in-memory backend code with new frontend assets, it is recommended to stop it prior to the upgrade, and start it back up afterwards:
+
+```sh
+sudo systemctl stop motioneye
+sudo python3 -m pip install --upgrade motioneye
+sudo systemctl start motioneye
+```
+
+# Pre-releases
+
+We may push beta versions to PyPI to give upcoming releases some testing period. Those can be installed with `pip`'s `--pre` flag:
 
 ```sh
 sudo systemctl stop motioneye
 sudo python3 -m pip install --upgrade --pre motioneye
+sudo systemctl start motioneye
+```
+
+If you want to test a recent commit on our development branch:
+
+```sh
+sudo systemctl stop motioneye
+sudo python3 -m pip install --upgrade 'https://github.com/motioneye-project/motioneye/archive/dev.tar.gz'
 sudo systemctl start motioneye
 ```
