@@ -2,12 +2,6 @@ name: pre-commit-autoupdate
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 42 15 * * *
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 permissions: {}
 
@@ -15,38 +9,5 @@ jobs:
   pre-commit-autoupdate:
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v6
-      with:
-        ref: dev
-        # https://github.com/peter-evans/create-pull-request/issues/48
-        token: ${{ secrets.GH_PAT }}
-    - uses: actions/setup-python@v6
-      with:
-        python-version: 3.x
-        check-latest: true
     - run: |
-        branch_exists=0
-        git fetch origin pre-commit-autoupdate && branch_exists=1
-        if (( branch_exists ))
-        then
-            git switch pre-commit-autoupdate
-        else
-            git checkout -b pre-commit-autoupdate
-        fi
-        pip install pre-commit
-        pre-commit --version
-        pre-commit autoupdate
-        git diff --exit-code && exit 0
-        git add -A
-        git config user.name 'github-actions[bot]'
-        git config user.email 'github-actions[bot]@users.noreply.github.com'
-        if (( branch_exists ))
-        then
-            git commit --amend --no-edit
-            git push -f origin pre-commit-autoupdate
-        else
-            git commit -m '[CI/CD] pre-commit autoupdate'
-            git push origin pre-commit-autoupdate
-            export GH_TOKEN='${{ secrets.GH_PAT }}'
-            gh pr create -B dev -H pre-commit-autoupdate -f -l 'CI/CD'
-        fi
+        echo Job disabled in fork on purpose.
